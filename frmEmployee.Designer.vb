@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmEmployee
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmEmployee
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmEmployee))
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -31,6 +31,7 @@ Partial Class frmEmployee
         Me.btnManageAccounts = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.lblFullname = New System.Windows.Forms.Label()
+        Me.btnBurrowLog = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -40,6 +41,7 @@ Partial Class frmEmployee
         Me.Panel1.BackColor = System.Drawing.SystemColors.ControlDark
         Me.Panel1.Controls.Add(Me.PictureBox1)
         Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.btnLogout)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
@@ -73,7 +75,7 @@ Partial Class frmEmployee
         Me.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnLogout.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLogout.ForeColor = System.Drawing.SystemColors.Control
-        Me.btnLogout.Location = New System.Drawing.Point(470, 274)
+        Me.btnLogout.Location = New System.Drawing.Point(63, 355)
         Me.btnLogout.Name = "btnLogout"
         Me.btnLogout.Size = New System.Drawing.Size(205, 67)
         Me.btnLogout.TabIndex = 7
@@ -86,7 +88,7 @@ Partial Class frmEmployee
         Me.btnBooks.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnBooks.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnBooks.ForeColor = System.Drawing.SystemColors.Control
-        Me.btnBooks.Location = New System.Drawing.Point(463, 181)
+        Me.btnBooks.Location = New System.Drawing.Point(459, 97)
         Me.btnBooks.Name = "btnBooks"
         Me.btnBooks.Size = New System.Drawing.Size(219, 75)
         Me.btnBooks.TabIndex = 6
@@ -99,7 +101,7 @@ Partial Class frmEmployee
         Me.btnManageAccounts.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnManageAccounts.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnManageAccounts.ForeColor = System.Drawing.SystemColors.Control
-        Me.btnManageAccounts.Location = New System.Drawing.Point(463, 100)
+        Me.btnManageAccounts.Location = New System.Drawing.Point(459, 324)
         Me.btnManageAccounts.Name = "btnManageAccounts"
         Me.btnManageAccounts.Size = New System.Drawing.Size(219, 75)
         Me.btnManageAccounts.TabIndex = 5
@@ -128,6 +130,19 @@ Partial Class frmEmployee
         Me.lblFullname.Text = "..."
         Me.lblFullname.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'btnBurrowLog
+        '
+        Me.btnBurrowLog.BackColor = System.Drawing.SystemColors.ControlText
+        Me.btnBurrowLog.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnBurrowLog.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnBurrowLog.ForeColor = System.Drawing.SystemColors.Control
+        Me.btnBurrowLog.Location = New System.Drawing.Point(459, 178)
+        Me.btnBurrowLog.Name = "btnBurrowLog"
+        Me.btnBurrowLog.Size = New System.Drawing.Size(219, 75)
+        Me.btnBurrowLog.TabIndex = 10
+        Me.btnBurrowLog.Text = "&Burrowed Books"
+        Me.btnBurrowLog.UseVisualStyleBackColor = False
+        '
         'frmEmployee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -135,8 +150,8 @@ Partial Class frmEmployee
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.lblFullname)
         Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.btnBurrowLog)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.btnLogout)
         Me.Controls.Add(Me.btnBooks)
         Me.Controls.Add(Me.btnManageAccounts)
         Me.Name = "frmEmployee"
@@ -157,4 +172,5 @@ Partial Class frmEmployee
     Friend WithEvents btnManageAccounts As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents lblFullname As Label
+    Friend WithEvents btnBurrowLog As Button
 End Class

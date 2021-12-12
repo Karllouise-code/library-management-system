@@ -26,6 +26,18 @@ Public Class frmEmployee
         Call employeeName()
     End Sub
 
+    'BUTTON BOOKS
+    Private Sub btnBooks_Click(sender As Object, e As EventArgs) Handles btnBooks.Click
+        Me.Hide()
+        frmBooks.Show()
+    End Sub
+
+    'BUTTON BURROWED BOOKS
+    Private Sub btnBurrowLog_Click(sender As Object, e As EventArgs) Handles btnBurrowLog.Click
+        Me.Hide()
+        frmBurrowLogs.Show()
+    End Sub
+
     'BUTTON MANAGE ACCOUNTS
     Private Sub btnManageAccounts_Click(sender As Object, e As EventArgs) Handles btnManageAccounts.Click
         Me.Hide()
@@ -38,9 +50,5 @@ Public Class frmEmployee
         frmLogin.Show()
     End Sub
 
-    'BUTTON BOOKS
-    Private Sub btnBooks_Click(sender As Object, e As EventArgs) Handles btnBooks.Click
-        Me.Hide()
-        frmBooks.Show()
-    End Sub
+
 End Class

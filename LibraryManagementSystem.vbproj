@@ -92,6 +92,12 @@
     <Compile Include="frmBorrow.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmBurrowLogs.Designer.vb">
+      <DependentUpon>frmBurrowLogs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmBurrowLogs.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDashboard.Designer.vb">
       <DependentUpon>frmDashboard.vb</DependentUpon>
     </Compile>
@@ -161,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmBorrow.resx">
       <DependentUpon>frmBorrow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBurrowLogs.resx">
+      <DependentUpon>frmBurrowLogs.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDashboard.resx">
       <DependentUpon>frmDashboard.vb</DependentUpon>

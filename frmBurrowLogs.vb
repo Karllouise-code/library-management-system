@@ -1,5 +1,6 @@
 ﻿Imports System.Data.OleDb
-Public Class frmBorrow
+Public Class frmBurrowLogs
+
     'LOADER FUNCTION
     Private Sub LoadTables(Optional ByVal q As String = "")
         Try
@@ -7,7 +8,7 @@ Public Class frmBorrow
                 OpenCon()
             End If
             query.Connection = con
-            query.CommandText = "SELECT * FROM tblBooks"
+            query.CommandText = "SELECT * FROM tblBurrowLog"
             adapter.SelectCommand = query
             dt.Clear()
             adapter.Fill(dt)
@@ -29,6 +30,7 @@ Public Class frmBorrow
         txtCategory.Text = row.Cells(4).Value.ToString()
         txtType.Text = row.Cells(5).Value.ToString()
         txtDate.Text = row.Cells(6).Value.ToString()
+        txtBurrowername.Text = row.Cells(7).Value.ToString()
     End Sub
 
     'SEARCH BOOK ID FUNCTION
@@ -65,24 +67,40 @@ Public Class frmBorrow
         con.Close()
     End Sub
 
-    'INSERT TBLBURROWLOGS FUNCTION
-    Private Sub burrowedBook(Optional ByVal q As String = "")
-        Try
-            query.Connection = con
-            query.CommandText = "INSERT INTO tblBurrowLog([Title], [Author], [Description], [Category], [Type], [Date_Burrowed], [Burrower_Name]) VALUES('" & txtTitle.Text & "', '" &
-                txtAuthor.Text & "', '" & txtDescrip.Text & "', '" & txtCategory.Text & "', '" & txtType.Text & "', '" & Today & "', '" & frmDashboard.lblFullname.Text & "')"
-            query.ExecuteNonQuery()
-        Catch ex As Exception
-            MessageBox.Show(ex.ToString)
-        End Try
+    'BUTTON RETURNED
+    Private Sub btnReturned_Click(sender As Object, e As EventArgs) Handles btnReturned.Click
+        If con.State = ConnectionState.Closed Then
+            OpenCon()
+        End If
+
+        If txtTitle.Text = "" Or txtAuthor.Text = "" Or txtDescrip.Text = "" Or txtCategory.Text = "" Or txtType.Text = "" Or txtDate.Text = "" Or txtBurrowername.Text = "" Then
+            MessageBox.Show("Please input empty fields!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        ElseIf txtSearch.Text <> Nothing Then
+            MessageBox.Show("Search Field has Value!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+            Try
+                query.Connection = con
+                query.CommandText = "INSERT INTO tblBooks([Title], [Author], [Description], [Category], [Type], [Date_Published]) VALUES('" & txtTitle.Text & "', '" &
+                txtAuthor.Text & "', '" & txtDescrip.Text & "', '" & txtCategory.Text & "', '" & txtType.Text & "', '" & txtDate.Text & "')"
+                query.ExecuteNonQuery()
+                MessageBox.Show("Successfully Returned!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                txtTitle.Clear()
+                txtAuthor.Clear()
+                txtDescrip.Clear()
+                txtCategory.Clear()
+                txtType.Clear()
+                txtDate.Clear()
+                txtBurrowername.Clear()
+                con.Close()
+                Call LoadTables()
+            Catch ex As Exception
+                MessageBox.Show(ex.ToString)
+            End Try
+            con.Close()
+            Call LoadTables()
+        End If
     End Sub
 
-    'LOADER
-    Private Sub frmBorrow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call LoadTables()
-    End Sub
-
-    'BUTTON SEARCH
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Try
             If txtSearch.Text = "" Then
@@ -99,44 +117,15 @@ Public Class frmBorrow
         con.Close()
     End Sub
 
-    'BUTTON BURROW
-    Private Sub btnBurrow_Click(sender As Object, e As EventArgs) Handles btnBurrow.Click
-        If con.State = ConnectionState.Closed Then
-            OpenCon()
-        End If
-
-        If txtSearch.Text = "" Then
-            MessageBox.Show("Please input a Book ID", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Else
-            Try
-                ''CHECK IF BOOKID EXIST ON DATABASE
-                Using cmd As New OleDbCommand("SELECT COUNT(*) FROM tblBooks WHERE [Book_ID] = @Book_ID", con)
-                    cmd.Parameters.AddWithValue("@Book_ID", OleDbType.VarChar).Value = txtSearch.Text.Trim
-                    Dim count = Convert.ToInt32(cmd.ExecuteScalar())
-                    If count > 0 Then
-                        query.Connection = con
-                        query.CommandText = "DELETE * FROM tblBooks WHERE [Book_ID] = " & txtSearch.Text & ""
-                        query.ExecuteNonQuery()
-                        MessageBox.Show("Book Borrowed Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        Call burrowedBook()
-                        txtSearch.Clear()
-                        con.Close()
-                        Call LoadTables()
-                        Exit Sub
-                    Else
-                        MessageBox.Show("Book ID is not Registered!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    End If
-                End Using
-            Catch ex As Exception
-                MessageBox.Show(ex.ToString)
-            End Try
-            con.Close()
-            Call LoadTables()
-        End If
+    'BUTTON CLEAR AND LOAD TABLES
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        Call LoadTables()
+        txtSearch.Clear()
     End Sub
 
+    'BUTTON BACK
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         Me.Hide()
-        frmDashboard.Show()
+        frmEmployee.Show()
     End Sub
 End Class
